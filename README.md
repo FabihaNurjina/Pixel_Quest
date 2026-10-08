@@ -1,145 +1,249 @@
-# 🎮 Pixel Quest
+#  Pixel Quest
 
 > A fun and interactive image puzzle game built with Python and Tkinter, where players rearrange shuffled image pieces to complete the original picture.
 
 ---
 
-## 📖 About the Project
+##  About the Project
 
-**Pixel Quest** is a desktop puzzle game developed using **Python** and **Tkinter**. The game challenges players to solve image-based puzzles by rearranging shuffled tiles into their correct positions.
+Pixel Quest challenges players to recognize objects hidden behind a grid of covered squares.
 
-The project was created to practice GUI development, image processing, and game logic while providing an enjoyable gaming experience.
+As you progress through the game, the puzzles become more difficult with larger grids. Players must balance how much of the image they reveal with how quickly they can make the correct guess.
 
+The game currently features two themed worlds:
+
+🍎 Fruit World
+
+🥦 Vegetable World
+
+Each world contains three progressively challenging levels.
 ---
 
-## ✨ Features
+##  Features
 
-- 🧩 Interactive image puzzle gameplay
-- 🎨 User-friendly graphical interface
-- 🖼️ Supports custom puzzle images
-- 🔀 Randomized tile shuffling
-- ⏱️ Move counting
-- 🏆 Victory detection
-- 💻 Lightweight and easy to run
+###  Progressive Puzzle Difficulty
 
----
+Each level uses a different grid size:
 
-## 🛠️ Built With
+| Level | Grid |
+|---|---:|
+| Level 1 | 3 × 3 |
+| Level 2 | 4 × 4 |
+| Level 3 | 5 × 5 |
 
-- Python 3
-- Tkinter
-- Pillow (PIL)
+The increasing grid size makes later challenges more difficult.
 
----
+###  30-Second Countdown
 
-## 📂 Project Structure
+Every level starts with a **30-second timer**.
 
+The timer changes appearance during the final five seconds and produces a warning sound as time runs out.
+
+###  Reveal & Guess Gameplay
+
+Players must reveal at least one square before submitting an answer.
+
+If the guess is incorrect, another square can be revealed before trying again.
+
+This creates a simple strategic challenge:
+
+> **Reveal more → gain more information, but risk losing time and points.**
+
+###  Scoring System
+
+Correct guesses award points based on the number of attempts.
+
+```text
+Points = max(10, 110 - (Attempt × 10))
 ```
-Pixel_Quest/
+
+Fewer attempts mean a higher score.
+
+###  High Score System
+
+Pixel Quest automatically saves the player's best score to:
+
+```text
+highscore.txt
+```
+
+The saved record is loaded when the game starts, allowing players to compete against their previous best score.
+
+###  Sound Effects
+
+The game uses Windows system sounds for:
+
+-  Correct answers
+-  Wrong answers
+-  Countdown warnings
+
+###  Interactive GUI
+
+The interface includes:
+
+- World introduction screens
+- Image-based puzzles
+- Interactive reveal grids
+- Answer choices
+- Score tracking
+- High-score tracking
+- Countdown timer
+- Game-over screens
+- Victory screens
+
+##  Worlds & Levels
+
+### 🍎 Fruit World
+
+| Level | Grid | Answer |
+|---|---:|---|
+| 1 | 3 × 3 | Cherry |
+| 2 | 4 × 4 | Fig |
+| 3 | 5 × 5 | Jackfruit |
+
+### 🥦 Vegetable World
+
+| Level | Grid | Answer |
+|---|---:|---|
+| 1 | 3 × 3 | Cabbage |
+| 2 | 4 × 4 | Broccoli |
+| 3 | 5 × 5 | Beetroot |
+
+---
+
+##  Built With
+
+-  **Python**
+-  **Tkinter** — GUI
+-  **winsound** — sound effects
+-  **OS module** — high-score file handling
+
+The project uses Python's built-in modules, so no external Python packages are required.
+---
+
+##  Project Structure
+
+
+```text
+Pixel-Quest/
 │
-├── assets/
-│   ├── images/
-│   └── icons/
+├── game.py
 │
-├── main.py
-├── puzzle.py
-├── utils.py
-├── requirements.txt
+├── fruits.png
+├── vegetables.png
+│
+├── fruit1.png
+├── fruit2.png
+├── fruit3.png
+│
+├── veg1.png
+├── veg2.png
+├── veg3.png
+│
+├── highscore.txt
+│
 └── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
-### Prerequisites
-
-- Python 3.9 or higher
-
-### Installation
-
-Clone the repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/Pixel_Quest.git
+git clone https://github.com/FabihaNurjina/Pixel_Quest.git
 ```
 
-Navigate into the project
+### 2. Open the project
 
 ```bash
 cd Pixel_Quest
 ```
 
-Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the game
+### 3. Run the game
 
 ```bash
 python main.py
 ```
 
----
+###  Windows Compatibility
 
-## 🎮 How to Play
+Pixel Quest uses Python's `winsound` module for its sound effects, so the audio functionality is designed for **Windows**.
 
-1. Launch the game.
-2. You will enter the 1st worl.
-3 The image of world elements will be covered with tiles.
-4. Remove the pieces by clicking them.
-5. Guess the object in the image after removing each tiles.
+##  How to Play
 
----
+1. Launch **Pixel Quest**.
+2. Enter a world.
+3. A hidden image will appear behind a grid.
+4. Click a square to reveal part of the image.
+5. Select your answer.
+6. If you're wrong, reveal another square and try again.
+7. Guess correctly before the timer reaches zero.
+8. Complete all levels in the world.
+9. Continue to the next world.
+10. Try to beat your **high score!** 
 
-## 💡 Future Improvements
+##  How the Game Works
 
-- 🎵 Background music
-- 🌟 Multiple difficulty levels
-- 🏅 Leaderboard
-- 💾 Save & Load game
-- 🎨 Themes
-- 🖼️ More puzzle packs
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create your feature branch
-
-```bash
-git checkout -b feature/NewFeature
+```text
+              START
+                │
+                ▼
+        Choose / Enter World
+                │
+                ▼
+          Start a Level
+                │
+                ▼
+       Hidden Image + Grid
+                │
+                ▼
+         Reveal a Square
+                │
+                ▼
+           Make a Guess
+          /           \
+      Correct        Incorrect
+        │                │
+        ▼                ▼
+    Earn Points      Reveal More
+        │                │
+        ▼                └──────► Try Again
+   Next Level
+        │
+        ▼
+   World Complete
+        │
+        ▼
+    Next World
+        │
+        ▼
+   Grand Champion
 ```
 
-3. Commit your changes
+##  Future Improvements
 
-```bash
-git commit -m "Add new feature"
-```
+Potential future additions:
 
-4. Push to the branch
+-  More themed worlds
+-  More puzzle categories
+-  Custom music and sound effects
+-  Leaderboards
+-  Player profiles
+-  Game statistics
+-  Difficulty modes
+-  Animations and transitions
+-  Online high-score system
+-  More image-based challenges
 
-```bash
-git push origin feature/NewFeature
-```
-
-5. Open a Pull Request
-
----
-
-## 👩‍💻 Author
+##  Author
 
 **Fabiha Nurjina**
 
-- GitHub: https://github.com/FabihaNurjina
-
-## ⭐ Support
+##  Support
 
 If you like this project, consider giving it a ⭐ on GitHub!
+---
 
-Happy Coding! 🚀
+⭐ **If you enjoyed Pixel Quest, consider giving the repository a star!**
