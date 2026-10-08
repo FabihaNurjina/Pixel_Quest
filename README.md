@@ -4,6 +4,11 @@
 
 ---
 
+## 🎥 Demo
+
+[![PixelQuest Demo](Screenshot.png)](https://youtu.be/x-qy1wke_sA)
+
+---
 ##  About the Project
 
 Pixel Quest challenges players to recognize objects hidden behind a grid of covered squares.
