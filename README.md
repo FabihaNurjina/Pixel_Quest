@@ -5,7 +5,7 @@
 ---
 
 ## 🎥 Demo
-
+Click below to watch the demo video.
 [![PixelQuest Demo](Screenshot.png)](https://youtu.be/x-qy1wke_sA)
 
 ---
